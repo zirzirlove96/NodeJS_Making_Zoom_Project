@@ -7,4 +7,4 @@ Zoom Clone using NodeJS, WebRTC and Websockets
 * express서버와 ws서버 둘 다 있지 않아도 되지만 여기에서는 같은 port를 타게 하기 위해 일부러 두개를 만듦
 * http://localhost:3000 || ws://localhost:3000
 
-** server.js에 있는 socket은 브라우저와의 연결을 뜻하며, app.js의 socket은 서버와의 연결을 뜻함 **
+**server.js에 있는 socket은 브라우저와의 연결을 뜻하며, app.js의 socket은 서버와의 연결을 뜻함**
