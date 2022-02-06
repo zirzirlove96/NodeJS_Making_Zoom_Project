@@ -1,4 +1,7 @@
+import http from "http"; //http모듈 (node.js에 내장되어 있음)
+import WebSocket from "ws";
 import express from "express";
+import { Socket } from "dgram";
 
 const app = express();
 
@@ -16,6 +19,19 @@ app.get("/*", (req, res) => res.redirect("/"));
 
 const handleListen = () => console.log("Listening on http://localhost:3000");
 
-app.listen(3000, handleListen);
+// 여기에서 express서버와 ws서버를 만들어서 둘 다 통신한다고 생각
+// 먼저 express 서버
+// 꼭 두개의 서버를 만들필요는 없지만 2개가 같은 port에 있길 원하기 때문에 만듬
+const server = http.createServer(app);
+const wss = new WebSocket.Server({server});
+
+// 서버와 브라우저 통신
+// socket은 연결된 브라우저를 뜻함
+wss.on("connection", (socket)=> {console.log(socket)});
+
+// http 서버위에 webSocket 서버를 만듦
+server.listen(3000, handleListen);
+
+//app.listen(3000, handleListen);
 
 // express 설정 

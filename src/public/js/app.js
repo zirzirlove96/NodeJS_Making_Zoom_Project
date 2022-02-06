@@ -1,2 +1,6 @@
+//alert("Welcome To My Chatting");
 
-alert("hi");
+// frontend에서는 통신하는 url만 지정하면 된다.
+// frontend에서 backend로 메세지를 보낼 수 있음
+// socket은 서버와의 연결을 뜻함
+const socket = new WebSocket(`ws://${window.location.host}`);
