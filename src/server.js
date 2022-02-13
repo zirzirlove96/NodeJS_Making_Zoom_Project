@@ -27,11 +27,15 @@ const wss = new WebSocket.Server({server});
 
 // 서버와 브라우저 통신
 // socket은 연결된 브라우저를 뜻함
-wss.on("connection", (socket)=> {console.log(socket)});
+wss.on("connection", (socket)=> {
+    //console.log(socket);
+    socket.send("Hello!!");
+    socket.on("message", (message) => 
+    {
+        console.log(message);
+    });
+    socket.on("close", ()=>console.log("DisConnected this Browser"));
+});
 
 // http 서버위에 webSocket 서버를 만듦
 server.listen(3000, handleListen);
-
-//app.listen(3000, handleListen);
-
-// express 설정 
