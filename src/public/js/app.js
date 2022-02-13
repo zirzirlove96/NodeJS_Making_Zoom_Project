@@ -12,7 +12,7 @@ socket.addEventListener("open", ()=>
 
 socket.addEventListener("message", (message)=> 
 {
-    console.log(message);
+    console.log("New message : ", message.data);
 });
 
 socket.addEventListener("close", ()=>
@@ -20,7 +20,6 @@ socket.addEventListener("close", ()=>
     console.log("DisConnected this Server");
 });
 
-setTimeout(()=>
-{
-    socket.send("Hello from the browser");
-},10000);
+setTimeout(() => {
+    socket.send("Hello");
+}, 10000);
