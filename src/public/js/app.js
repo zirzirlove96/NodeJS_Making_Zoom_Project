@@ -5,6 +5,10 @@
 // socket은 서버와의 연결을 뜻함
 const socket = new WebSocket(`ws://${window.location.host}`);
 
+
+const ul = document.querySelector("ul");
+const form = document.querySelector("form");
+
 socket.addEventListener("open", ()=> 
 {
     console.log("Connect this Server");
@@ -20,6 +24,12 @@ socket.addEventListener("close", ()=>
     console.log("DisConnected this Server");
 });
 
-setTimeout(() => {
-    socket.send("Hello");
-}, 10000);
+function handleSubmit(event) {
+    event.preventDefault();
+    const input = form.querySelector("input");
+    console.log(input.value);
+    socket.send(input.value);// front에서 backend로 메세지 내용을 보낸다.
+    input.value="";
+}
+
+form.addEventListener("submit", handleSubmit);

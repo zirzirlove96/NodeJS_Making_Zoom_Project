@@ -31,11 +31,14 @@ const wss = new WebSocket.Server({server});
 wss.on("connection", (socket)=> {
     console.log("Start!");
     socket.on("close", ()=>console.log("DisConnected this Browser"));
-    socket.on("message", (message) => 
+    /*socket.on("message", (message) => 
     {
         console.log(message);
     });
-    socket.send("Hello!!");
+    socket.send("Hello!!");*/
+    socket.on("message", (message)=> {
+        socket.send(message); // front에서 받은 메세지를 backend에서 다시 front로 보내준다.
+    });
 });
 
 // http 서버위에 webSocket 서버를 만듦
